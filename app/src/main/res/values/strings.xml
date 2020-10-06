@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Chattr App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_login">Đăng nhập</string>
+    <string name="text_register">Đăng ký</string>
+    <string name="hint_email_input">Email</string>
+    <string name="hint_password_input">Mật khẩu</string>
+    <string name="text_password_description">Hiện mật khẩu</string>
+    <string name="text_get_password">Lấy lại mật khẩu</string>
+    <string name="text_description_fullname">Nhập họ và tên đầy đủ</string>
+    <string name="hint_fullname_input">Nhập họ và tên</string>
+    <string name="hint_phone_input">Số điện thoại</string>
+    <string name="text_desciption_phone">Nhập số điện thoại liên lạc</string>
+    <string name="radio_male">Nam</string>
+    <string name="radio_female">Nữ</string>
+    <string name="text_continue">Tiếp tục</string>
+    <string name="text_notifiy_otp">Mã OTP đang được gửi đến số máy\n%1$s!</string>
+    <string name="text_waitting_message">Vui lòng mở tin nhắn để nhận mã</string>
+    <string name="menu_messages_title">Tin nhắn</string>
+    <string name="menu_profile_title">Cá nhân</string>
+    <string name="menu_contacts_title">Danh bạ</string>
+    <string name="menu_group_title">Nhóm</string>
+</resources>
