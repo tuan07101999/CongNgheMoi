@@ -12,9 +12,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/colorTextDescription"
-        android:padding="10dp"
+        android:padding="5dp"
         android:text="Vui lòng không chia sẻ mã xác thực để tránh mất tài khoản"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

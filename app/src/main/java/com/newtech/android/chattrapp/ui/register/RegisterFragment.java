@@ -77,9 +77,6 @@ public class RegisterFragment extends Fragment {
                     case R.id.phoneNumberFragment:
                         navController.navigate(R.id.action_phoneNumberFragment_to_otpVerifyFragment);
                         break;
-                    case R.id.otpVerifyFragment:
-                        navController.navigate(R.id.action_otpVerifyFragment_to_infoFragment);
-                        break;
                 }
             }
         });

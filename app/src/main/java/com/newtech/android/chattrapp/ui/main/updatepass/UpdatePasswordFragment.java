@@ -1,4 +1,4 @@
-package com.newtech.android.chattrapp.ui.register;
+package com.newtech.android.chattrapp.ui.main.updatepass;
 
 import android.os.Bundle;
 
@@ -12,40 +12,43 @@ import android.view.ViewGroup;
 
 import com.newtech.android.chattrapp.MainActivity;
 import com.newtech.android.chattrapp.R;
-import com.newtech.android.chattrapp.ui.main.profile.ProfileFragment;
+import com.newtech.android.chattrapp.ui.register.InfoFragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link InfoFragment#newInstance} factory method to
+ * Use the {@link UpdatePasswordFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InfoFragment extends Fragment {
+public class UpdatePasswordFragment extends Fragment {
+
+
+
+    public UpdatePasswordFragment() {
+        // Required empty public constructor
+    }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_update_password, container, false);
         setupActionBar(view);
         return view;
     }
-
     private void setupActionBar(View view) {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((MainActivity) getActivity()).setSupportActionBar(toolbar);
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.button_update_info);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.button_update_password);
         ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(InfoFragment.this).popBackStack();
+                NavHostFragment.findNavController(UpdatePasswordFragment.this).popBackStack();
             }
         });
     }

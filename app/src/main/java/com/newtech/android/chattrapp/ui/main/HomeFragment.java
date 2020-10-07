@@ -14,11 +14,6 @@ import android.view.ViewGroup;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.newtech.android.chattrapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HomeFragment extends Fragment {
 
     public HomeFragment() {
@@ -39,7 +34,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         NavHostFragment navHostFragment =
-                (NavHostFragment) getChildFragmentManager().findFragmentById(R.id.nav_host_fragment);
+                (NavHostFragment) getChildFragmentManager().findFragmentById(R.id.nav_host_main);
         NavController navController = navHostFragment.getNavController();
         final BottomNavigationView bottomNav = view.findViewById(R.id.bottomNavigationView);
         NavigationUI.setupWithNavController(bottomNav, navController);
