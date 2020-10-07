@@ -46,7 +46,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         setupActionBar(view);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         btnUpdateInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

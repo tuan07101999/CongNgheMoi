@@ -27,6 +27,9 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.btnLogin)
     Button btnLogin;
 
+    @BindView(R.id.btnGetPassword)
+    Button btnGetPassword;
+
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -41,9 +44,6 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override
@@ -59,6 +59,14 @@ public class LoginFragment extends Fragment {
                         .navigate(R.id.action_loginFragment_to_homeFragment);
             }
         });
+        btnGetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(LoginFragment.this)
+                        .navigate(R.id.action_loginFragment_to_createPasswordFragment);
+            }
+        });
+
 
 
         return view;

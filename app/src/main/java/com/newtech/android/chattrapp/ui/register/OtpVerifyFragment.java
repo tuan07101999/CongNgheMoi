@@ -30,11 +30,6 @@ public class OtpVerifyFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static OtpVerifyFragment newInstance(String param1, String param2) {
-        OtpVerifyFragment fragment = new OtpVerifyFragment();
-        Bundle args = new Bundle();
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
