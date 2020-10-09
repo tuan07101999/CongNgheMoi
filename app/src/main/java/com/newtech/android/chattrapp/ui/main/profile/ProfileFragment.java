@@ -2,6 +2,7 @@ package com.newtech.android.chattrapp.ui.main.profile;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.newtech.android.chattrapp.MainActivity;
 import com.newtech.android.chattrapp.R;
 
@@ -35,6 +38,10 @@ public class ProfileFragment extends Fragment {
 
     @BindView(R.id.imageUser)
     CircleImageView imageUser;
+
+    @BindView(R.id.collapsingToolbarLayout)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+
 
     public ProfileFragment() {
     }
@@ -59,6 +66,10 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         ButterKnife.bind(this, view);
         ((MainActivity)getActivity()).hideActionBar();
+        collapsingToolbarLayout.setTitle("Tên người dùng");
+        collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(getActivity(),android.R.color.transparent));
+        collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.colorIcons));
+
         btnUpdateInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,10 +118,10 @@ public class ProfileFragment extends Fragment {
                     isShow = true;
                     imageUser.setVisibility(View.GONE);
 
+
                 } else if (isShow) {
                     isShow = false;
                     imageUser.setVisibility(View.VISIBLE);
-
                 }
             }
         });

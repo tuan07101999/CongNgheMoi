@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -14,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.newtech.android.chattrapp.MainActivity;
 import com.newtech.android.chattrapp.R;
 import com.newtech.android.chattrapp.Validator;
@@ -21,7 +24,20 @@ import com.newtech.android.chattrapp.ui.register.RegisterFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 public class LoginFragment extends Fragment implements Validator {
+    @BindView(R.id.fieldPhone)
+    TextInputLayout fieldPhoneNumber;
+
+    @BindView(R.id.fieldPassword)
+    TextInputLayout fieldPassword;
+
+    @BindView(R.id.edtPhone)
+    TextInputEditText edtPhoneNumber;
+
+    @BindView(R.id.edtPassword)
+    TextInputEditText edtPassword;
+
     @BindView(R.id.btnLogin)
     Button btnLogin;
 
@@ -49,9 +65,12 @@ public class LoginFragment extends Fragment implements Validator {
 
             }
         });
+        //Đăng nhập vào ứng dụng
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String phoneNumber = edtPhoneNumber.getText().toString();
+                String password = edtPassword.getText().toString();
                 NavHostFragment.findNavController(LoginFragment.this)
                         .navigate(R.id.action_loginFragment_to_homeFragment);
             }
@@ -68,8 +87,9 @@ public class LoginFragment extends Fragment implements Validator {
         return view;
     }
 
+
     @Override
     public boolean isValidateInput() {
-        return false;
+        return true;
     }
 }
