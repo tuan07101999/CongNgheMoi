@@ -27,8 +27,11 @@
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_otpVerifyFragment2"
-            app:destination="@id/otpVerifyFragment" />
+            android:id="@+id/action_loginFragment_to_otpVerifyFragment"
+            app:destination="@id/otpVerifyFragment">
+            <argument android:name="loginArg" app:argType="string" android:defaultValue="login"/>
+        </action>
+
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -57,7 +60,7 @@
         android:label="fragment_otp_verify"
         tools:layout="@layout/fragment_otp_verify" >
         <action
-            android:id="@+id/action_otpVerifyFragment2_to_createPasswordFragment"
+            android:id="@+id/action_otpVerifyFragment_to_createPasswordFragment"
             app:destination="@id/createPasswordFragment" />
     </fragment>
 </navigation>

@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:background="@color/colorTextDescription"
         android:padding="5dp"
-        android:text="Vui lòng không chia sẻ mã xác thực để tránh mất tài khoản"
-        android:textSize="16sp"
+        android:text="@string/text_warning_protect_otp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +45,7 @@
         android:id="@+id/textSendMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="@string/text_notifiy_otp"
         android:textColor="@color/colorPrimaryText"
@@ -76,15 +77,17 @@
         android:background="@drawable/button_filled"
         android:text="@string/text_continue"
         android:textColor="@color/colorIcons"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldOtp" />
+        app:layout_constraintTop_toBottomOf="@+id/fieldOtp"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/ic_image_otp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

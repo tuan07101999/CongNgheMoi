@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.newtech.android.chattrapp.MainActivity;
 import com.newtech.android.chattrapp.R;
 
 public class HomeFragment extends Fragment {
@@ -33,6 +34,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        ((MainActivity)getActivity()).hideActionBar();
         NavHostFragment navHostFragment =
                 (NavHostFragment) getChildFragmentManager().findFragmentById(R.id.nav_host_main);
         NavController navController = navHostFragment.getNavController();

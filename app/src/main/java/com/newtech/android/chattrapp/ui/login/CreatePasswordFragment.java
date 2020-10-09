@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 
 import com.newtech.android.chattrapp.MainActivity;
 import com.newtech.android.chattrapp.R;
+import com.newtech.android.chattrapp.Validator;
 import com.newtech.android.chattrapp.ui.main.profile.ProfileFragment;
+import com.newtech.android.chattrapp.ui.register.RegisterFragment;
 
 
-public class CreatePasswordFragment extends Fragment {
+public class CreatePasswordFragment extends Fragment implements Validator {
 
 
     public CreatePasswordFragment() {
@@ -33,19 +35,17 @@ public class CreatePasswordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_password, container, false);
-        setupActionBar(view);
-        return view;
-    }
-    private void setupActionBar(View view) {
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
-        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.text_create_new_password);
-        ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        ((MainActivity)getActivity()).setupActionBar(getString(R.string.text_create_new_password), true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(CreatePasswordFragment.this).popBackStack();
             }
         });
+        return view;
+    }
+
+    @Override
+    public boolean isValidateInput() {
+        return false;
     }
 }

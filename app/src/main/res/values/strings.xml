@@ -29,4 +29,7 @@
     <string name="hint_new_password">Mật khẩu mới</string>
     <string name="hint_repeat_new_password">Nhập lại mật khẩu mới</string>
     <string name="text_create_new_password">Tạo mật khẩu mới</string>
+    <string name="text_input_otp">Nhập mã xác thực</string>
+    <string name="text_warning_protect_otp">Vui lòng không chia sẻ mã xác thực để tránh mất tài khoản</string>
+    <string name="text_confirm_logout">Bạn có muốn đăng xuất tài khoản này?</string>
 </resources>

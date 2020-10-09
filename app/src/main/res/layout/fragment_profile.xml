@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/appBarProfile"
         android:fitsSystemWindows="true"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
             app:toolbarId="@+id/toolbar">
 
@@ -38,11 +38,35 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"></androidx.appcompat.widget.Toolbar>
+                android:layout_height="?attr/actionBarSize">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageUserSmall"
+                    android:src="@mipmap/ic_launcher_round"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"/>
+                <TextView
+                    android:id="@+id/txtUsername"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorIcons"
+                    android:textSize="20sp"
+                    android:paddingStart="10dp"
+                    android:text="Tên người dùng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageUser"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_anchor="@+id/appBarProfile"
+        app:layout_anchorGravity="bottom|center" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -50,7 +74,7 @@
 
 
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:paddingTop="50dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
@@ -60,8 +84,8 @@
 
             <Button
                 android:id="@+id/btnUpdateInfo"
-                android:text="@string/button_update_info"
-                style="@style/buttonInProfileLayout" />
+                style="@style/buttonInProfileLayout"
+                android:text="@string/button_update_info" />
 
             <Button
                 android:id="@+id/btnUpdatePassword"
@@ -74,13 +98,6 @@
                 android:text="@string/button_logout" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@mipmap/ic_launcher_round"
-        app:layout_anchor="@+id/appbar"
-        app:layout_anchorGravity="bottom|center" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,5 +1,7 @@
 package com.newtech.android.chattrapp.ui.main.profile;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +12,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.newtech.android.chattrapp.MainActivity;
 import com.newtech.android.chattrapp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
     @BindView(R.id.btnUpdateInfo)
@@ -23,8 +27,16 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.btnUpdatePassword)
     Button btnUpdatePassword;
 
+    @BindView(R.id.btnLogout)
+    Button btnLogout;
+
+    @BindView(R.id.appBarProfile)
+    AppBarLayout mAppBarLayout;
+
+    @BindView(R.id.imageUser)
+    CircleImageView imageUser;
+
     public ProfileFragment() {
-        // Required empty public constructor
     }
 
     public static ProfileFragment newInstance() {
@@ -45,8 +57,8 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        setupActionBar(view);
         ButterKnife.bind(this, view);
+        ((MainActivity)getActivity()).hideActionBar();
         btnUpdateInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,20 +73,49 @@ public class ProfileFragment extends Fragment {
                         .navigate(R.id.action_profileFragment_to_updatePasswordFragment);
             }
         });
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+                        .setMessage(R.string.text_confirm_logout)
+                        .setNegativeButton("KHÔNG", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .setPositiveButton("CÓ", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+
+                builder.show();
+            }
+        });
+
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    isShow = true;
+                    imageUser.setVisibility(View.GONE);
+
+                } else if (isShow) {
+                    isShow = false;
+                    imageUser.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
         return view;
     }
 
-    private void setupActionBar(View view) {
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
-        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("");
-        ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(ProfileFragment.this).popBackStack();
-            }
-        });
-    }
 
 }
