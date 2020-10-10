@@ -19,6 +19,12 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(String name, String avatarlink, String phonenumber) {
+        this.name = name;
+        this.avatarlink = avatarlink;
+        this.phonenumber = phonenumber;
+    }
+
     public String getName() {
         return name;
     }

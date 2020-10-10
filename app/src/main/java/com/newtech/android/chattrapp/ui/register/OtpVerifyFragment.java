@@ -40,6 +40,8 @@ public class OtpVerifyFragment extends Fragment implements Validator, IOtpView {
 
     ProgressDialog mProgressDialog;
 
+    RegisterProvider mRegisterProvider;
+
 
     public OtpVerifyFragment() {
         // Required empty public constructor
@@ -60,17 +62,27 @@ public class OtpVerifyFragment extends Fragment implements Validator, IOtpView {
         ((MainActivity) getActivity()).setupActionBar(getString(R.string.text_input_otp), false, null);
 
         mProgressDialog = new ProgressDialog(getActivity());
-
+        mRegisterProvider = new RegisterProvider(this);
         //hiện số điện thoại người dùng
         textSendMessage.setText(getString(R.string.text_notifiy_otp, getArguments().getString("phoneNumber")));
-
+        sendOtpImage(getArguments().getString("phoneNumber"));
         btnContinueOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (getArguments() != null && getArguments().getString("loginArg") != null) {
-                    navigateCreateNewPassword();
+                    if (isValidOtp(editOtp.getText().toString())) {
+                        navigateCreateNewPassword();
+                    }
+
                 } else {
-                    navigateUpdateInfo();
+                    //Tạo tài khoản
+                    if (isValidOtp(editOtp.getText().toString())) {
+                        String phoneNumber = getArguments().getString("phoneNumber");
+                        String fullName = getArguments().getString("fullName");
+                        mRegisterProvider.signup(new User());
+                        navigateUpdateInfo();
+                    }
+
                 }
             }
         });
@@ -96,14 +108,15 @@ public class OtpVerifyFragment extends Fragment implements Validator, IOtpView {
     }
 
     @Override
-    public void setUser(User user) {
+    public void sendOtpImage(String phoneNumber) {
 
     }
 
     @Override
-    public void sendOtpMessage(String phoneNumber) {
-
+    public boolean isValidOtp(String Otp) {
+        return true;
     }
+
 
     @Override
     public void navigateUpdateInfo() {
