@@ -75,6 +75,11 @@ public class InfoFragment extends Fragment implements Validator, IInfoView {
     }
 
     @Override
+    public void setUser(User user) {
+
+    }
+
+    @Override
     public void updateUser(User user) {
 
     }

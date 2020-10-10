@@ -46,13 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.homeFragment:
                     case R.id.messagesFragment:
                     case R.id.profileFragment:
-                        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-                            @Override
-                            public void onBackStackChanged() {
 
-                            }
-                        });
-                        onBackPressed();
                         break;
                 }
             }
