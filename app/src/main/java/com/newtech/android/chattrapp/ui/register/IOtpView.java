@@ -1,13 +1,16 @@
 package com.newtech.android.chattrapp.ui.register;
 
+import com.newtech.android.chattrapp.model.User;
+
 public interface IOtpView {
     void showLoading();
 
     void hideLoading();
 
-    void sendOtpImage(String phoneNumber);
+    void setUser(User user);
 
-    boolean isValidOtp(String Otp);
+    void sendOtpMessage(String phoneNumber);
+
 
     void navigateUpdateInfo();
 

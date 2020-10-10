@@ -13,6 +13,6 @@ public interface UserApi {
     @GET("user/{id}")
     Call<User> getUserById(@Path("id") String phoneNumber);
 
-    @POST("user/update/{id}")
+    @PATCH("user/update/{id}")
     Call<User> updateUser(@Path("id") String phoneNumber, @Body User user);
 }

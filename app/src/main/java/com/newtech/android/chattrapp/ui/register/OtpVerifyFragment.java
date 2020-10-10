@@ -2,23 +2,32 @@ package com.newtech.android.chattrapp.ui.register;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+
+import com.google.android.gms.tasks.TaskExecutors;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.newtech.android.chattrapp.MainActivity;
+import com.newtech.android.chattrapp.QueryPreferences;
 import com.newtech.android.chattrapp.R;
 import com.newtech.android.chattrapp.Utils;
 import com.newtech.android.chattrapp.Validator;
 import com.newtech.android.chattrapp.model.User;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +51,29 @@ public class OtpVerifyFragment extends Fragment implements Validator, IOtpView {
 
     RegisterProvider mRegisterProvider;
 
+    /**
+     * Xử lý nhận tin mã xác thực
+     */
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        @Override
+        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+            hideLoading();
+            if (phoneAuthCredential.getSmsCode() != null) {
+                editOtp.setText(phoneAuthCredential.getSmsCode());
+                setValidOtp(true);
+            }else {
+                setValidOtp(false);
+            }
+        }
+
+        @Override
+        public void onVerificationFailed(@NonNull FirebaseException e) {
+            hideLoading();
+            setValidOtp(false);
+            onErrorMessage(e.getLocalizedMessage());
+        }
+    };
+    private boolean isValidOtp;
 
     public OtpVerifyFragment() {
         // Required empty public constructor
@@ -65,24 +97,25 @@ public class OtpVerifyFragment extends Fragment implements Validator, IOtpView {
         mRegisterProvider = new RegisterProvider(this);
         //hiện số điện thoại người dùng
         textSendMessage.setText(getString(R.string.text_notifiy_otp, getArguments().getString("phoneNumber")));
-        sendOtpImage(getArguments().getString("phoneNumber"));
+
+        sendOtpMessage(getArguments().getString("phoneNumber"));
+
         btnContinueOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getActivity(), isValidOtp() + "", Toast.LENGTH_SHORT).show();
                 if (getArguments() != null && getArguments().getString("loginArg") != null) {
-                    if (isValidOtp(editOtp.getText().toString())) {
+                    if (isValidOtp()) {
                         navigateCreateNewPassword();
                     }
 
                 } else {
-                    //Tạo tài khoản
-                    if (isValidOtp(editOtp.getText().toString())) {
+                    if (isValidOtp()) {
                         String phoneNumber = getArguments().getString("phoneNumber");
                         String fullName = getArguments().getString("fullName");
-                        mRegisterProvider.signup(new User());
+                        mRegisterProvider.signup(new User(phoneNumber, fullName, ""));
                         navigateUpdateInfo();
                     }
-
                 }
             }
         });
@@ -108,15 +141,30 @@ public class OtpVerifyFragment extends Fragment implements Validator, IOtpView {
     }
 
     @Override
-    public void sendOtpImage(String phoneNumber) {
-
+    public void setUser(User user) {
+        QueryPreferences.setPrefUserId(getActivity(), user.getPhonenumber());
     }
+
 
     @Override
-    public boolean isValidOtp(String Otp) {
-        return true;
+    public void sendOtpMessage(String phoneNumber) {
+        showLoading();
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                "+84" + phoneNumber,
+                60,
+                TimeUnit.SECONDS,
+                TaskExecutors.MAIN_THREAD,
+                mCallbacks);
     }
 
+    public boolean isValidOtp() {
+        return isValidOtp;
+    }
+
+
+    public void setValidOtp(boolean validOtp) {
+        isValidOtp = validOtp;
+    }
 
     @Override
     public void navigateUpdateInfo() {

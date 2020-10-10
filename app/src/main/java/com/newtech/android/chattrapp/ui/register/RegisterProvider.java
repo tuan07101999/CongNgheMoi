@@ -41,7 +41,7 @@ public class RegisterProvider {
     }
 
 
-    void signup(User user) {
+    void signup(final User user) {
         mIOtpView.showLoading();
         Call<User> userCall = Utils.getAuthenticationApi().signup(user);
         userCall.enqueue(new Callback<User>() {
@@ -49,7 +49,7 @@ public class RegisterProvider {
             public void onResponse(Call<User> call, Response<User> response) {
                 mIOtpView.hideLoading();
                 if (response.isSuccessful() && response.body() != null) {
-                    mIOtpView.setUser(response.body());
+                    mIOtpView.setUser(user);
                 } else {
                     mIOtpView.onErrorMessage(response.message());
                 }
@@ -60,6 +60,11 @@ public class RegisterProvider {
                 mIOtpView.onErrorMessage(t.getLocalizedMessage());
             }
         });
+
+
+    }
+    void updateUser(String phoneNumber,User user ){
+
     }
 
 
