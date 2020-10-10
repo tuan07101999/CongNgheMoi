@@ -5,6 +5,7 @@ import com.newtech.android.chattrapp.model.User;
 public interface IInfoView {
     void showLoading();
     void hideLoading();
+    void setUser(User user);
     void updateUser(User user);
     void navigateAferUpdateSuccess();
     void onErrorMessage(String msg);
