@@ -18,6 +18,7 @@ import com.newtech.android.chattrapp.MainActivity;
 import com.newtech.android.chattrapp.R;
 import com.newtech.android.chattrapp.Utils;
 import com.newtech.android.chattrapp.Validator;
+import com.newtech.android.chattrapp.model.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,6 +93,11 @@ public class OtpVerifyFragment extends Fragment implements Validator, IOtpView {
     @Override
     public void hideLoading() {
         mProgressDialog.dismiss();
+    }
+
+    @Override
+    public void setUser(User user) {
+
     }
 
     @Override
