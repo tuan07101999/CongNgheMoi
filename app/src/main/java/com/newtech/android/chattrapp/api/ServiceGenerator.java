@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
-    private static final String IP = "localhost";
+    private static final String IP = "192.168.11.15";
     public static final String API_BASE_URL = "http://"+IP+":3000/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();

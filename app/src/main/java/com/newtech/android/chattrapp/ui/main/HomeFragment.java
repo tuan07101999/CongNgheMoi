@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.newtech.android.chattrapp.MainActivity;
+import com.newtech.android.chattrapp.QueryPreferences;
 import com.newtech.android.chattrapp.R;
 
 public class HomeFragment extends Fragment {
@@ -49,7 +50,7 @@ public class HomeFragment extends Fragment {
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                bottomNav.setVisibility(View.GONE);
+                bottomNav.setVisibility(View.VISIBLE);
                 if(destination.getId()==R.id.profileFragment){
                     return;
                 }
@@ -58,7 +59,7 @@ public class HomeFragment extends Fragment {
                     return;
                 }
                 setHasOptionsMenu(true);
-                ((MainActivity) getActivity()).setupActionBar("Tên người dùng", false, null);
+                ((MainActivity) getActivity()).setupActionBar(QueryPreferences.getPrefUserId(getActivity()), false, null);
                 Toast.makeText(getActivity(), HomeFragment.class.getSimpleName(), Toast.LENGTH_SHORT).show();
 
             }
