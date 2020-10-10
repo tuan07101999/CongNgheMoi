@@ -11,7 +11,12 @@
         tools:layout="@layout/fragment_full_name">
         <action
             android:id="@+id/action_fullNameFragment_to_phoneNumberFragment"
-            app:destination="@id/phoneNumberFragment" />
+            app:destination="@id/phoneNumberFragment">
+<!--            <argument-->
+<!--                android:name="fullName"-->
+<!--                android:defaultValue="none"-->
+<!--                app:argType="String" />-->
+        </action>
     </fragment>
     <fragment
         android:id="@+id/phoneNumberFragment"
@@ -26,14 +31,23 @@
         android:id="@+id/infoFragment"
         android:name="com.newtech.android.chattrapp.ui.register.InfoFragment"
         android:label="fragment_info"
-        tools:layout="@layout/fragment_info" />
+        tools:layout="@layout/fragment_info" >
+        <action
+            android:id="@+id/action_infoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/otpVerifyFragment"
         android:name="com.newtech.android.chattrapp.ui.register.OtpVerifyFragment"
         android:label="fragment_otp_verify"
-        tools:layout="@layout/fragment_otp_verify" >
+        tools:layout="@layout/fragment_otp_verify">
         <action
             android:id="@+id/action_otpVerifyFragment_to_infoFragment"
             app:destination="@id/infoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.newtech.android.chattrapp.ui.main.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>

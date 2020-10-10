@@ -6,8 +6,15 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.newtech.android.chattrapp.api.AuthenticationApi;
+import com.newtech.android.chattrapp.api.ServiceGenerator;
+
 
 public class Utils {
+
+    public static AuthenticationApi getAuthenticationApi() {
+        return ServiceGenerator.createService(AuthenticationApi.class);
+    }
     public static AlertDialog.Builder showMessage(Context context, String title, String message) {
         return new AlertDialog.Builder(context).setMessage(title).setMessage(message).setPositiveButton("ĐÓNG", new DialogInterface.OnClickListener() {
             @Override

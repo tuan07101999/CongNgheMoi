@@ -7,7 +7,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
-    public static final String API_BASE_URL = "https://your.api-base.url";
+    private static final String IP = "192.168.42.237";
+    public static final String API_BASE_URL = "http://"+IP+":3000/api/v1/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
@@ -22,7 +23,6 @@ public class ServiceGenerator {
 
     public static <S> S createService(
             Class<S> serviceClass, final String authToken) {
-        Retrofit  retrofit = null;
         if (!TextUtils.isEmpty(authToken)) {
             AuthenticationInterceptor interceptor =
                     new AuthenticationInterceptor(authToken);
@@ -31,10 +31,10 @@ public class ServiceGenerator {
                 httpClient.addInterceptor(interceptor);
 
                 builder.client(httpClient.build());
-                retrofit = builder.build();
+              
             }
         }
-
+        Retrofit retrofit = builder.build();
         return retrofit.create(serviceClass);
     }
 }

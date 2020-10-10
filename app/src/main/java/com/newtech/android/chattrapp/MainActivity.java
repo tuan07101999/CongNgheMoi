@@ -1,9 +1,13 @@
 package com.newtech.android.chattrapp;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Bundle;
@@ -35,6 +39,24 @@ public class MainActivity extends AppCompatActivity {
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavController navController = navHostFragment.getNavController();
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                switch (destination.getId()) {
+                    case R.id.homeFragment:
+                    case R.id.messagesFragment:
+                    case R.id.profileFragment:
+                        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+                            @Override
+                            public void onBackStackChanged() {
+
+                            }
+                        });
+                        onBackPressed();
+                        break;
+                }
+            }
+        });
     }
 
     public void setupActionBar(String title, boolean isDisplayHome, View.OnClickListener clickListener) {
@@ -48,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         mAppBarLayout.setVisibility(View.VISIBLE);
     }
 
-    public void hideActionBar(){
+    public void hideActionBar() {
         mAppBarLayout.setVisibility(View.GONE);
     }
 

@@ -18,7 +18,7 @@ import com.newtech.android.chattrapp.ui.main.profile.ProfileFragment;
 import com.newtech.android.chattrapp.ui.register.RegisterFragment;
 
 
-public class CreatePasswordFragment extends Fragment implements Validator,ILoginView {
+public class CreatePasswordFragment extends Fragment implements Validator {
 
 
     public CreatePasswordFragment() {
@@ -50,33 +50,5 @@ public class CreatePasswordFragment extends Fragment implements Validator,ILogin
         return false;
     }
 
-    @Override
-    public void showLoading() {
 
-    }
-
-    @Override
-    public boolean login(String phoneNumber, String password) {
-        return false;
-    }
-
-    @Override
-    public void setUser(User user) {
-
-    }
-
-    @Override
-    public void navigateHome() {
-
-    }
-
-    @Override
-    public void navigateGetPassword() {
-
-    }
-
-    @Override
-    public void onErrorLoading(String message) {
-
-    }
 }

@@ -1,15 +1,20 @@
 package com.newtech.android.chattrapp.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
 public class User implements Serializable {
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("avatarlink")
+    @Expose
+    private String avatarlink;
     @SerializedName("phonenumber")
-    private String phoneNumber;
-    private String password;
-    private String avatarLink;
+    @Expose
+    private String phonenumber;
 
     public User() {
     }
@@ -22,27 +27,19 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getAvatarlink() {
+        return avatarlink;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setAvatarlink(String avatarlink) {
+        this.avatarlink = avatarlink;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAvatarLink() {
-        return avatarLink;
-    }
-
-    public void setAvatarLink(String avatarLink) {
-        this.avatarLink = avatarLink;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 }

@@ -15,7 +15,7 @@
     <string name="radio_male">Nam</string>
     <string name="radio_female">Nữ</string>
     <string name="text_continue">Tiếp tục</string>
-    <string name="text_notifiy_otp">Mã OTP đang được gửi đến số máy\n%1$s!</string>
+    <string name="text_notifiy_otp">Mã OTP đang được gửi đến số máy\n%1$s</string>
     <string name="text_waitting_message">Vui lòng mở tin nhắn để nhận mã</string>
     <string name="menu_messages_title">Tin nhắn</string>
     <string name="menu_profile_title">Cá nhân</string>
